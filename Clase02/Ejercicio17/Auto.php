@@ -46,10 +46,10 @@ class Auto{
     private $_marca;
     private $_fecha;
 
-    public function __construct($_color,$_precio,$_marca = "FIAT",$_fecha = "19/04/2024"){
+    public function __construct($_marca, $_color, $_precio = 0, $_fecha = "") {
+        $this->_marca = $_marca;
         $this->_color = $_color;
         $this->_precio = $_precio;
-        $this->_marca = $_marca;
         $this->_fecha = $_fecha;
     }
 
@@ -57,15 +57,8 @@ class Auto{
         $this->_precio += $impuesto;
     }
 
-    public function Equals($otroAuto){ 
-
-        if( $this->_marca == $otroAuto->_marca){
-            return true;
-        }
-        else{
-            false;
-        }
-
+    public function Equals($auto){
+        return $this->_marca == $auto->_marca;      
     }
 
     public static function MostrarAuto($auto){
