@@ -22,3 +22,69 @@
 // En testGarage.php, crear autos y un garage. Probar el buen funcionamiento de todos
 // los métodos.
 //en el remove acordate de usar el $this->autos = array_values($this->_autos) despues del unset
+include_once "Auto.php";
+
+class Garage{
+
+    private $_razonSocial;
+    private $_precioPorHora;
+    private $_autos;
+
+    public function __construct($_razonSocial, $_precioPorHora = 0) {
+        $this->_razonSocial = $_razonSocial;
+        $this->_precioPorHora = $_precioPorHora;
+        $this->_autos = array();
+    }
+
+
+    public function MostrarGarage(){
+        echo "Razon social: ".$this->_razonSocial."<br>";
+        echo "Precio por hora: ".$this->_precioPorHora."<br>";
+        echo "Autos: <br>";
+        foreach ($this->_autos as $auto) {
+            Auto::MostrarAuto($auto);
+        }
+    }
+
+    public function Equals($auto){
+        foreach ($this->_autos as $auto) {
+            if($auto->Equals($auto)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function Add($auto){
+        if(!$this->Equals($auto)){
+            array_push($this->_autos, $auto);
+        }else{
+            echo "El auto ya esta en el garage","<br>";
+        }
+    }
+
+
+    public function Remove($auto){
+        $flag = false;
+        foreach ($this->_autos as $key => $auto) {
+            if($auto->Equals($auto)){
+                unset($this->_autos[$key]);
+                $flag = true;
+            }
+        }
+        if(!$flag){
+            echo "El auto no esta en el garage ","<br>";
+        }else{
+            $this->_autos = array_values($this->_autos);
+        }
+    }     
+    
+}
+$miGarage = new Garage("Garage S.R.L", 100,"<br>");
+$auto1 = new Auto("rojo",1000,"Ferrari","19/04/2024","<br>");
+$auto2 = new Auto("rojo",1000,"Ford","19/04/2024","<br>");
+$auto3 = new Auto("rojo",1000,"Ford","19/04/2024","<br>");
+$miGarage->Add($auto1);
+$miGarage->Add($auto2);
+$miGarage->Add($auto3);
+$miGarage->MostrarGarage();

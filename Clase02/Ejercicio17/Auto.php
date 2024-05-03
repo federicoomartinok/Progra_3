@@ -62,18 +62,18 @@ class Auto{
     }
 
     public static function MostrarAuto($auto){
+        echo "Color: ".$auto->_color."<br>";
+        echo "Precio: ".$auto->_precio."<br>";
+        echo "Marca: ".$auto->_marca."<br>";
+        echo "Fecha: ".$auto->_fecha."<br>";
         
-        var_dump($auto);
-    }
-
-    
-    
+    }  
 }
 
 
 $miAuto = new Auto("rojo",1000,"Ferrari","19/04/2024");
 $auto2 = new Auto("rojo",1000,"Ford","19/04/2024");
 
-echo $miAuto -> Equals($auto2);
-// echo Auto::MostrarAuto($miAuto);
+#echo $miAuto -> Equals($auto2);
+#echo Auto::MostrarAuto($miAuto);
 
